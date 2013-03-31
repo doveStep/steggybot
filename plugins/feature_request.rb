@@ -7,7 +7,7 @@ class FeatureRequest
 	include Cinch::Plugin
 
 	match /add task (.+)/i, method: :add
-
+	match /list tasks/i, method: :list
 
 	def initialize(*args)
 		super
@@ -22,10 +22,25 @@ class FeatureRequest
 
 	    store_tasks = File.new(@task_list, 'w')
 	    store_tasks.puts YAML.dump(combined_tasks)
+	    store_tasks.close
 	
 	    m.reply "#{m.user.nick}: Request received and rendered ##{new_task}"
 	end
 
+	def list(m)
+		tasks = get_tasks || []
+		if tasks == []
+			m.reply "No one has requested a feature yet."
+		else
+			m.reply "#{m.user.nick}: Listing requested features & their statuses"
+			tasks.each do |task|
+				m.reply "#{task["task"]}"
+				#m.reply "task: #{task["task"]}, progress: #{task["progress"]}, claim: #{task["claim"]}"
+			end
+
+
+		end
+	end
 
 	#--------------------------------------------------------------------------------
 	# Protected
