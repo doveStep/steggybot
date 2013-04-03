@@ -140,6 +140,29 @@ class FeatureRequest
     end
   end
 
+  # Please only use to remove mistakes.
+  # To mark a task completed, use !complete <task>
+  def remove_request(m, task_description)
+    tasks = get_tasks @task_list || []
+    if tasks != []
+      nothing_was_deleted = true
+      tasks.each do |task|
+        if task["task"] == task_description
+          tasks.delete task
+          nothing_was_deleted = false
+          m.reply "#{m.user.nick}: Removed mistaken feature request #{task_description}"
+        end
+      end
+      if nothing_was_deleted
+        m.reply "#{m.user.nick}: Cannot remove '#{task_description}' because it is not the full title/description of an added feature request."
+      end
+    
+    end
+
+    store tasks
+  end
+
+
   #--------------------------------------------------------------------------------
   # Protected
   #--------------------------------------------------------------------------------
@@ -161,4 +184,14 @@ class FeatureRequest
     tasks
   end
 
+
+
+
+
+
+
+
+
+
+ 
 end
