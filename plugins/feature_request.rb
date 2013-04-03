@@ -140,6 +140,22 @@ class FeatureRequest
     end
   end
 
+  def get_status(m, query)
+    success_message = "#{m.user.nick}: Status: #{task["progress"]}; Feature Request: #{task["task"]}"
+    search_tasks query, success_message
+  end
+
+
+  def get_task(m, query)
+    success_message = "#{m.user.nick}: Status: #{task["progress"]} for #{task["task"]}"
+    search_tasks query, success_message
+  end
+
+  def get_claim(m, query)
+    success_message = "#{m.user.nick}: Claim: #{task["claim"]} for #{task["task"]}"
+    search_tasks query, success_message
+  end
+
   # Please only use to remove mistakes.
   # To mark a task completed, use !complete <task>
   def remove_request(m, task_description)
@@ -183,6 +199,30 @@ class FeatureRequest
 
     tasks
   end
+
+
+  # Walks through list searching for query matches.
+  # Replies with success_message for each query matched.
+  # Executes code block for each query matched (e.g. claim a task)
+  # If no matches found, replies with no matches found message.
+  def search_tasks(query, success_message, lambda = nil)
+
+    tasks = get_tasks @task_list || []
+    if tasks != []
+      tasks.each { |task|
+        if task["task"].include? query
+          if lambda != nil
+            lambda.call(task)
+          end
+          m.reply success_message
+        end
+      }
+    else
+      m.reply "#{m.user.nick}: No requests found that match your query."
+    end
+  end
+
+
 
 
 
