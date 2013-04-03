@@ -94,4 +94,44 @@ class FeatureRequest
   # If you complete a feature request, change its progress to "Completed" and
   # it will be moved to the completed_features.yml. 
   match /remove (.+)/i, method: :remove_request
+
+
+  def initialize(*args)
+    super
+    @task_list = config[:task_list]
+  end
+
+  def add_request(m, task)
+    new_task = {"task" => task, "added_by" => m.user.nick, "created_at" => Time.now, "progress" => "not started", "claim" => "no one has claimed"}
+    
+    old_tasks = get_tasks @task_list || []
+    combined_tasks = old_tasks << new_task
+
+    store combined_tasks
+  
+    m.reply "#{m.user.nick}: Request received and rendered ##{new_task}"
+  end
+
+
+  #--------------------------------------------------------------------------------
+  # Protected
+  #--------------------------------------------------------------------------------
+
+  protected
+
+  def store(tasks)
+    output = File.new(@task_list, 'w')
+    output.puts YAML.dump(tasks)
+    output.close
+
+  end
+
+  def get_tasks(file)
+    output = File.new(file, 'r')
+    tasks = YAML.load(output.read)
+    output.close
+
+    tasks
+  end
+
 end
