@@ -112,6 +112,33 @@ class FeatureRequest
     m.reply "#{m.user.nick}: Request received and rendered ##{new_task}"
   end
 
+  # Replies with a list of already requested features.
+  def print_requests(m)
+    tasks = get_tasks @task_list || []
+    if tasks == []
+      m.reply "No one has requested a feature yet."
+    else
+      m.reply "Listing requested features & their statuses below:"
+      tasks.each do |task|
+        m.reply "#{task["task"]} -- Progress: #{task["progress"];}"
+
+        #m.reply "task: #{task["task"]}, progress: #{task["progress"]}, claim: #{task["claim"]}"
+      end
+    end
+  end
+
+  # Replies with all information on each feature whose title or description match your query.
+  # Works best if you have a name for your feature request.
+  def print_info(m, title)
+    tasks = get_tasks @task_list || []
+    if tasks != []
+      tasks.each do |task|
+        if task["task"].include? title
+          m.reply "#{m.user.nick}: Info: #{task}"
+        end
+      end
+    end
+  end
 
   #--------------------------------------------------------------------------------
   # Protected
