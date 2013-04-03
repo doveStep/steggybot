@@ -1,27 +1,7 @@
 ---
-- :task: your face 2.0
-  :added_by: doves
-  :created_at: 2013-03-29 19:41:53.150410000 -07:00
-  :progress: not started
-  :claim: no one has claimed
-- :task: ! 'example title: example stuff for steggybot to do blah blah blah.'
-  :added_by: doves
-  :created_at: 2013-03-30 20:54:48.778631000 -07:00
-  :progress: not started
-  :claim: no one has claimed
-- :task: ! 'titler: it titles everything for you in some undescriptive mysterious
-    way'
-  :added_by: doves
-  :created_at: 2013-03-30 21:03:23.011056000 -07:00
-  :progress: not started
-  :claim: no one has claimed
-- :task: ! 'padudora: send notifications about dragons and when to hatch dragon eggs'
+- :task: ! 'testing123: the perfect test for feature request'
   :added_by: doveStep
-  :created_at: 2013-03-31 03:46:49.357281000 -07:00
-  :progress: not started
-  :claim: no one has claimed
-- :task: ! 'testing123: a testing framework for steggybot.'
-  :added_by: doveStep
-  :created_at: 2013-04-02 20:31:02.103999000 -07:00
-  :progress: not started
-  :claim: no one has claimed
+  :created_at: 2013-04-03 16:10:53.147139000 -07:00
+  :progress: begun
+  :updated_at: 2013-04-03 16:12:51.427230000 -07:00
+  :claim: doves

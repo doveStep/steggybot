@@ -5,7 +5,7 @@ bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.net"
     c.nick = "steggybot"
-    c.channels = ["#csuasamtest"] #"#csua", "#csuatest", "##csua"]
+    c.channels = ["#csua", "#csuatest", "##csua"] #["#csuasamtest"] 
     c.plugins.plugins = [Google, UrbanDictionary, TitleGrabber, Quotes, Pokedex, Youtube, YaBish, Roll, WhoAreThesePeople, PlusPlus, Pazudora, FeatureRequest, Help]
 
     c.plugins.options[Quotes] = {
