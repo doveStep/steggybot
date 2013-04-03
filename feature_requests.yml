@@ -1,9 +1,4 @@
 ---
-- task: your face
-  added_by: doves
-  created_at: 2013-03-29 19:24:32.243938000 -07:00
-  progress: not started
-  claim: no one has claimed
 - task: your face 2.0
   added_by: doves
   created_at: 2013-03-29 19:41:53.150410000 -07:00
@@ -17,5 +12,20 @@
 - task: ! 'titler: it titles everything for you in some undescriptive mysterious way'
   added_by: doves
   created_at: 2013-03-30 21:03:23.011056000 -07:00
+  progress: not started
+  claim: no one has claimed
+- task: ! 'padudora: send notifications about dragons and when to hatch dragon eggs'
+  added_by: doveStep
+  created_at: 2013-03-31 03:46:49.357281000 -07:00
+  progress: not started
+  claim: no one has claimed
+- task: ! 'testing123: a testing framework for steggybot.'
+  added_by: doveStep
+  created_at: 2013-04-02 20:31:02.103999000 -07:00
+  progress: not started
+  claim: no one has claimed
+- task: your face
+  added_by: doveStep
+  created_at: 2013-04-02 20:45:30.132237000 -07:00
   progress: not started
   claim: no one has claimed

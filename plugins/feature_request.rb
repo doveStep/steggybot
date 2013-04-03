@@ -156,6 +156,71 @@ class FeatureRequest
     search_tasks query, success_message
   end
 
+  def update_status(m, query, new_status)
+    success_message = ""
+    update = lambda do |task| 
+        if task["claim"] == m.user.nick
+            task["progress"] = new_status
+            success_message = "#{m.user.nick}: Successfully changed #{task["progress"]} to #{new_status} for #{task["task"]}."
+        else
+            success_message = "#{m.user.nick}: Only the claimant can make progress updates to #{task["task"]}."
+        end
+    end
+    search_tasks(query, success_message, update)
+  end
+
+  def mark_completed(m, query)
+    success_message = ""
+    
+    update = lambda do |task| 
+        if task["claim"] == m.user.nick
+            task["progress"] = "completed"
+            success_message = "#{m.user.nick}: Congratulations on completing #{task["task"]}!!!"
+        else
+            success_message = "#{m.user.nick}: Only the claimant can make progress updates to #{task["task"]}."
+        end
+    end
+    search_tasks(query, success_message, update)
+  end
+
+
+
+  def mark_started(m, query)
+    success_message = ""
+    update = lambda do |task| 
+        if task["claim"] == m.user.nick
+            task["progress"] = "begun"
+            success_message = "#{m.user.nick}: I'm so glad you're starting to work on #{task["task"]}!"
+        else
+            success_message = "#{m.user.nick}: Only the claimant can make progress updates to #{task["task"]}."
+        end
+    end
+
+    search_tasks(query, success_message, update)
+  end
+
+  # fix a typo or assign a better name
+  # typical task looks like <title>:<description>
+  # task == feature request == todo item; same difference
+  def edit_task(m, query, new_task)
+    success_message = "#{m.user.nick}: Successfully changed #{task["task"]} to #{new_task}."
+    update = lambda {|task| task["task"] = new_task}
+    search_tasks(query, success_message, update)
+  end
+
+  def stake_claim(m, query)
+    success_message = ""
+    update = lambda do |task|
+      if claim == "no one has claimed"
+        success_message = "#{m.user.nick}: You have successfully claimed #{task["task"]}. "
+        task["claim"] = m.user.nick
+      else
+        success_message = "#{m.user.nick}: #{task["claim"]} has first dibs on #{task["task"]}. Sort it with them."
+      end
+    end
+    search_tasks(query, success_message, update)
+  end
+
   # Please only use to remove mistakes.
   # To mark a task completed, use !complete <task>
   def remove_request(m, task_description)
