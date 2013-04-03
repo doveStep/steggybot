@@ -55,4 +55,43 @@ class FeatureRequest
 
 		tasks
 	end
+  include Cinch::Plugin
+
+  # Adds your input as a feature request to steggybot.
+  # Works best if you give your feature request a <title>:<description>.
+  # Example: !add task feature request: a todo style app that lists features and their progress
+  match /request (.+)/i, method: :add_request
+  match /add feature (.+)/i, method: :add_request
+  match /add request (.+)/i, method: :add_request
+
+
+  # Replies with a list of already requested features.
+  # For a super lengthy list with all of the detail, type !info :
+  # If you want to use !info in your app, tell me and I'll change it to something else.
+  match /list/i, method: :print_requests
+
+  # Replies with detailed information on each feature whose title or description match your query.
+  match /info (.+)/i, method: :print_info
+
+  # Replies with specific information on each feature whose title/descr matches your query.
+  match /status? (.+)/i, method: :get_status
+  match /progress? (.+)/i, method: :get_status
+  match /task? (.+)/i, method: :get_task
+  match /claim? (.+)/i, method: :get_claim
+
+  # Overwrites specific information on each feature whose title/descr matches your query.
+  # Your query should only match one feature request.
+  # Fix typos, update progress, or stake a claim.
+  match /status = (.+) for (.+)/i, method: :update_status
+  match /progress = (.+) for (.+)/i, method: :update_status
+  match /complete (.+)/i, method: :mark_completed
+  match /start (.+)/i, method: :mark_started
+  match /task = (.+) for (.+)/i, method: :edit_task
+  match /claim (.+)/i, method: :stake_claim
+
+  # Please only use to remove troll or test feature requests.
+  # To remove, you must type the *entire* title+description, aka entire "task" field.
+  # If you complete a feature request, change its progress to "Completed" and
+  # it will be moved to the completed_features.yml. 
+  match /remove (.+)/i, method: :remove_request
 end
