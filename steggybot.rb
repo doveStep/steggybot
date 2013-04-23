@@ -25,6 +25,7 @@ bot = Cinch::Bot.new do
     c.plugins.options[Pazudora] = {
       :pddata => "db/pddata.yml"
     }
+    }
   end
 end
 
