@@ -1,3 +1,0 @@
-a !feature_request command
-a !contributors command
-a setup so that arbitrary !.*'s which have no mapping get levenshteined to the closest command steggybot knows about, with a "did you mean x", git-style
