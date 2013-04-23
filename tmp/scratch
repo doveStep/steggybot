@@ -1,0 +1,82 @@
+####
+
+!avalon status
+=> mode: waiting for votes
+      ....
+!avalon who
+   Current players: <nick>, <nick>...
+   Current characters: merlin, assassin, ...
+!avalon log
+
+
+####
+
+
+!avalon start [characters...]
+!avalon start
+=> starting an avalon game
+
+
+# each person
+!avalon in
+=> 7 players: using merlin, assasin, ...
+
+!avalon use merl
+!avalon use 
+
+!avalon go
+=> Darkness falls over camelot.  Check your PM for ...
+
+(pm to each player)
+=> You are Merlin (good).  Assassin, Morgana, and Oberon are (in some order) jayferd, doveStep, and laughinghan.
+
+=> laughinghan is King.  The hammer is doveStep.
+=> King, please propose a team of <n> knights to go a-questing.
+
+(from han)
+!avalon propose <nick> <nick> <nick>
+     => wrong number of knights
+=> laughinghan proposes <nick>, <nick>, and <nick>.  Knights of the round table, what say ye? (PM the bot with "yea" or "nay")
+
+(wait for all votes)
+=> <nick> has voted.  Still waiting for [<nick>...]
+
+=> The votes are in!  The team is [accepted|rejected]
+   jayferd: yea
+   doveStep: nay
+   laughinghan: yea
+   ...
+
+rejected:  The team is rejected!
+(next king, go to <nick> is King...)
+
+accepted: The team is accepted!  [team members], please PM the bot with "success" or "failure"
+
+=> <nick> has voted.
+=> <nick> has voted.
+=> <nick> has voted.
+=> The chalices are in.  The mission [failed|succeeded].
+
+
+
+"#csua":
+  players:
+  	- <nick>: merlin
+  	- <nick>: morgana
+  	- ...
+  features:
+    - lady (#use, #unuse)
+    - mordred
+    - morberon
+    - merlin
+  king: <nick>
+  hammer: <nick>
+  log:
+  	- success: <bool>
+  	  team: <nick>, <nick>...
+  	  chalices: true, true, false
+  	- ...
+  mode: voting
+  votes: [nick: bool]
+  chalices: [nick: bool ]
+  team: [<nick>]

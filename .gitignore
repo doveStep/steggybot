@@ -1,7 +1,4 @@
-# Ignore data files
-db
-*.yml
-*.json
+
 
 # Ignore vim swap files
 *.sw[a-p]

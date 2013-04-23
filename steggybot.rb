@@ -7,9 +7,11 @@ bot = Cinch::Bot.new do
     c.server = "irc.freenode.net"
     c.nick = "steggybot"
     c.channels = ["#csua", "#csuatest", "##csua"]
-    c.plugins.plugins = [Google, UrbanDictionary, TitleGrabber, Quotes, Pokedex, Youtube, 
-                         YaBish, Roll, WhoAreThesePeople, PlusPlus, Pazudora]
+    c.plugins.plugins = [Google, UrbanDictionary, TitleGrabber, Quotes, Pokedex,
+                         Youtube, YaBish, Roll, WhoAreThesePeople, PlusPlus, 
+                         Pazudora, FeatureRequest]
     c.plugins.plugins << Help
+
     c.plugins.options[Quotes] = {
       :quotes_file => "db/quotes.yml"
     }
@@ -25,6 +27,8 @@ bot = Cinch::Bot.new do
     c.plugins.options[Pazudora] = {
       :pddata => "db/pddata.yml"
     }
+    c.plugins.options[FeatureRequest] = {
+      :task_list => "feature_requests.yml"
     }
   end
 end
