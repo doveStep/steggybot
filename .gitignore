@@ -1,7 +1,17 @@
 
+#Ignore the yml files used as local storage
+*.yml
 
 # Ignore vim swap files
 *.sw[a-p]
 
 # Ignore OSX files
 .DS_Store
+
+#Ignore linux backup files
+*~
+
+localbot.rb
+
+# ignore the massive ya_bish dataset that contains all our logs
+/db/ya_bish

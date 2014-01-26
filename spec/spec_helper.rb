@@ -1,10 +1,11 @@
 #To run the test suite, run "bundle exec rspec plugins/*/spec/"
 
-
 def mock_message(opts={})
   m = mock()
   
-  m.should_receive(:message).and_return(opts[:message]) if opts[:message]
+  m.stub(:message) { opts[:message] } if opts[:message]
+  m.stub(:user) { mock(:nick => opts[:nick]) } if opts[:nick]
+  m.stub(:reply)
   return m
 end
 
