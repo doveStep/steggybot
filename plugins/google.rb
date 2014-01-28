@@ -7,7 +7,6 @@ class Google
   include Cinch::Plugin
   match /google (.+)/, method: :execute
   match /image (.+)/, method: :image
-
   @help_hash = {
     :google => "Usage: !google THING
 Example !google Syria
